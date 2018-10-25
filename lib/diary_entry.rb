@@ -31,7 +31,8 @@ class DiaryEntry
 
   def self.find_by_id(id)
     conn = db_connect
-    result = conn.exec("SELECT FROM diary_entries WHERE id = #{id};")
+    result = conn.exec("SELECT * FROM diary_entries WHERE id = #{id};")[0]
+    DiaryEntry.new(result['date'], result['title'], result['body'], result['id'])
   end
 
   def self.db_connect

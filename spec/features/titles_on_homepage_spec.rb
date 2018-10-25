@@ -10,13 +10,13 @@ feature 'titles on homepage' do
     expect(page).to have_content("Week 2 at Makers")
   end
 
-  # scenario 'user can click on a title to see the full Diary Entry' do
-  #   visit('/diary_entries/new')
-  #   fill_in(:title, with: "Week 1 at Makers")
-  #   fill_in(:body, with: "OOD")
-  #   click_button("Save")
-  #   click_link("Week 1 at Makers")
-  #   expect(page).to have_content("Week 1 at Makers")
-  #   expect(page).to have_content("OOD")
-  # end
+  scenario 'user can click on a title to see the full Diary Entry' do
+    visit('/diary_entries/new')
+    fill_in(:title, with: "Week 1 at Makers")
+    fill_in(:body, with: "OOD")
+    click_button("Save")
+    click_link("Week 1 at Makers")
+    expect(page).to have_content("Week 1 at Makers")
+    expect(page).to have_content("OOD")
+  end
 end
