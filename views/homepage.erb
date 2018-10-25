@@ -1,4 +1,4 @@
-<% @titles.each do |title| %>
-<ul><%= title %></ul>
+<% @entries.each do |entry| %>
+<ul><a href="/diary_entries/<%= entry.id %>"><%= entry.title %></a></ul>
 <% end %>
-<%# <a href="/diary_entries/new">New Entry</a> %>
+<a href="/diary_entries/new">New Entry</a>

@@ -3,7 +3,7 @@ require 'pry'
 
 class DiaryEntry
 
-  attr_reader :title
+  attr_reader :date, :title, :body, :id
 
   def initialize(date, title, body, id)
     @date = date
@@ -20,12 +20,18 @@ class DiaryEntry
 
   def self.all
     conn = db_connect
-    conn.exec('SELECT * FROM diary_entries')
+    result = conn.exec('SELECT * FROM diary_entries;')
+    result.map { |entry| DiaryEntry.new(entry['date'], entry['title'], entry['body'], entry['id']) }
   end
 
   def self.all_titles
     entries = self.all
-    entries.map {|entry| entry['title']}
+    entries.map { |entry| entry.title }
+  end
+
+  def self.find_by_id(id)
+    conn = db_connect
+    result = conn.exec("SELECT FROM diary_entries WHERE id = #{id};")
   end
 
   def self.db_connect
